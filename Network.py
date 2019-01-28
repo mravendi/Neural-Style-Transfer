@@ -2,6 +2,15 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import os
+backend="theano"
+os.environ['KERAS_BACKEND'] = backend
+
+from keras import backend as K
+K.set_image_data_format('channels_first')
+
+
+
 from scipy.misc import imread, imresize, imsave, fromimage, toimage
 
 from scipy.optimize import fmin_l_bfgs_b
@@ -580,7 +589,7 @@ if preserve_color:
 else:
     color_mask = None
 
-num_iter = args.num_iter
+num_iter = 100 #args.num_iter
 prev_min_val = -1
 
 improvement_threshold = float(args.min_improvement)
